@@ -177,13 +177,13 @@ const ChatbotPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="h-screen flex overflow-hidden">
       {/* Left Sidebar - AI Agents */}
       <div className={`bg-white border-r border-slate-200 flex flex-col py-6 transition-all duration-300 ${
         isTopicExpanded ? 'w-48' : 'w-64'
       }`}>
         <h2 className="px-6 text-lg font-semibold text-slate-800 mb-4">AI Agents</h2>
-        <div className="space-y-1 px-4">
+        <div className="space-y-1 px-4 overflow-y-auto">
           {agents.map(agent => (
             <div key={agent.id}>
               <button
@@ -231,7 +231,7 @@ const ChatbotPage: React.FC = () => {
       </div>
 
       {/* Middle Section - Chat */}
-      <div className={`flex-1 flex flex-col max-h-screen transition-all duration-300 ${
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${
         isTopicExpanded ? 'w-[25%]' : 'w-[60%]'
       }`}>
         {/* Chat Header */}
@@ -311,38 +311,40 @@ const ChatbotPage: React.FC = () => {
         </div>
 
         {isTopicExpanded ? (
-          <div className="flex-1 overflow-y-auto p-4">
-            {selectedTopic && sampleThreads[selectedTopic]?.map(thread => (
-              <div key={thread.id} className="mb-6 bg-white rounded-lg border border-slate-200 p-4">
-                <div className="flex items-start gap-3 mb-3">
-                  <img
-                    src={thread.author.avatar}
-                    alt={thread.author.name}
-                    className="w-10 h-10 rounded-full"
-                  />
-                  <div>
-                    <h4 className="font-medium text-slate-900">{thread.author.name}</h4>
-                    <p className="text-xs text-slate-500">{thread.author.role}</p>
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-4">
+              {selectedTopic && sampleThreads[selectedTopic]?.map(thread => (
+                <div key={thread.id} className="mb-6 bg-white rounded-lg border border-slate-200 p-4">
+                  <div className="flex items-start gap-3 mb-3">
+                    <img
+                      src={thread.author.avatar}
+                      alt={thread.author.name}
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <div>
+                      <h4 className="font-medium text-slate-900">{thread.author.name}</h4>
+                      <p className="text-xs text-slate-500">{thread.author.role}</p>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-medium text-slate-900 mb-2">{thread.title}</h3>
+                  <p className="text-slate-600 mb-4">{thread.content}</p>
+                  <div className="flex items-center gap-4 text-sm text-slate-500">
+                    <button className="flex items-center gap-1 hover:text-blue-600">
+                      <ThumbsUp size={16} />
+                      <span>{thread.likes}</span>
+                    </button>
+                    <button className="flex items-center gap-1 hover:text-blue-600">
+                      <MessageCircle size={16} />
+                      <span>{thread.replies}</span>
+                    </button>
+                    <button className="flex items-center gap-1 hover:text-blue-600">
+                      <Share2 size={16} />
+                    </button>
+                    <span className="ml-auto text-xs">{thread.timestamp}</span>
                   </div>
                 </div>
-                <h3 className="text-lg font-medium text-slate-900 mb-2">{thread.title}</h3>
-                <p className="text-slate-600 mb-4">{thread.content}</p>
-                <div className="flex items-center gap-4 text-sm text-slate-500">
-                  <button className="flex items-center gap-1 hover:text-blue-600">
-                    <ThumbsUp size={16} />
-                    <span>{thread.likes}</span>
-                  </button>
-                  <button className="flex items-center gap-1 hover:text-blue-600">
-                    <MessageCircle size={16} />
-                    <span>{thread.replies}</span>
-                  </button>
-                  <button className="flex items-center gap-1 hover:text-blue-600">
-                    <Share2 size={16} />
-                  </button>
-                  <span className="ml-auto text-xs">{thread.timestamp}</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ) : (
           <div className="flex-1 flex flex-col">
