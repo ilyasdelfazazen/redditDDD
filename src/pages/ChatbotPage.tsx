@@ -276,7 +276,7 @@ const ChatbotPage: React.FC = () => {
         </div>
 
         {/* Chat Input */}
-        <div className="bg-white border-t border-slate-200 p-4">
+        <div className="bg-white border-t border-slate-200 p-4 mt-auto">
           <div className="flex items-center gap-4">
             <input
               type="text"
