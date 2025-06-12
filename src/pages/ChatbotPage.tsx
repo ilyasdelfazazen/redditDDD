@@ -255,8 +255,8 @@ const ChatbotPage: React.FC = () => {
           )}
         </div>
 
-        {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        {/* Chat Messages - Takes up most of the space */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-4" style={{ maxHeight: 'calc(100vh - 200px)' }}>
           {messages.map(message => (
             <div
               key={message.id}
@@ -275,8 +275,8 @@ const ChatbotPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Chat Input */}
-        <div className="bg-white border-t border-slate-200 p-4 mt-auto">
+        {/* Chat Input - Positioned higher, aligned with Luna */}
+        <div className="bg-white border-t border-slate-200 p-4" style={{ marginTop: '-120px' }}>
           <div className="flex items-center gap-4">
             <input
               type="text"
